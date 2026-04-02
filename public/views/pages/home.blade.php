@@ -199,7 +199,7 @@
    @vite(['resources/js/jquery.min.js', 'resources/js/bootstrap.bundle.js',
                 'resources/js/script.js', 'resources/owl/owl.carousel.min.js',
                 'resources/owl/owl.carousel.js', 'resources/js/index.js'])
-  <script type="module">
+  <script>
 
 
     $(document).ready(function () {

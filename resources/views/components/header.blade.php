@@ -22,9 +22,22 @@
               class="hcall_svg"></a></div>
         <div class="hcall_link"><a href="tel:84732120203" class="hcall_phone">+7 (473) 212-02-03 </a></div>
       </div>
-      <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
+      <!-- <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
         <div class="hacc"><a href="#" class="hacc-svg_login"><img src="icons/hacc.svg" class="hacc_svg"></a></div>
         <div class="hacc_link"><a href="#" class="hacc_login">Вход/регистрация</a></div>
+      </div> -->
+      <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
+        <div class="hacc">
+          <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
+            <img src="icons/hacc.svg" class="hacc_svg">
+          </a>
+        </div>
+
+        <div class="hacc_link">
+          <a href="#" class="hacc_login" data-bs-toggle="modal" data-bs-target="#loginModal">
+            Вход/регистрация
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -531,5 +544,98 @@
     </div>
   </div>
 
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content login-modal">
 
+      <div class="modal-header border-0 pb-0">
+        <h4 class="modal-title w-100 text-center fw-bold">
+          Войти в личный кабинет
+        </h4>
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body pt-2">
+
+        <form method="POST" action="{{ route('login') }}">
+          @csrf
+
+          <div class="mb-3">
+            <input
+              type="text"
+              name="email"
+              class="form-control login-input"
+              placeholder="Логин"
+              required
+            >
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="password"
+              name="password"
+              class="form-control login-input"
+              placeholder="Пароль"
+              required
+            >
+          </div>
+
+          <button class="btn btn-danger w-100 login-btn">
+            ВОЙТИ
+          </button>
+
+          <div class="text-center mt-3">
+
+            <a href="{{ route('register') }}" class="login-register">
+              Регистрация
+            </a>
+
+            <br>
+
+            <a href="{{ route('password.request') }}" class="login-forgot">
+              Забыли пароль?
+            </a>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<style>
+  .login-modal{
+  border-radius: 8px;
+  padding: 10px 20px 25px;
+}
+
+.login-input{
+  height: 50px;
+  border-radius: 4px;
+  background:#f5f5f5;
+  border:1px solid #e5e5e5;
+}
+
+.login-btn{
+  height:50px;
+  font-weight:600;
+  letter-spacing:1px;
+}
+
+.login-register{
+  color:#ff3b00;
+  font-size:14px;
+  text-decoration:none;
+}
+
+.login-forgot{
+  font-size:13px;
+  color:#444;
+  text-decoration:none;
+}
+</style>
 </header>

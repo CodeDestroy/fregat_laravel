@@ -196,9 +196,9 @@
   <script src="resources/owl/owl.carousel.min.js"></script>
   <script src="resources/owl/owl.carousel.js"></script>
   <script src="resources/js/index.js"></script> -->
-   @vite(['resources/js/jquery.min.js', 'resources/js/bootstrap.bundle.js',
+   <!-- @vite(['resources/js/jquery.min.js', 'resources/js/bootstrap.bundle.js',
                 'resources/js/script.js', 'resources/owl/owl.carousel.min.js',
-                'resources/owl/owl.carousel.js', 'resources/js/index.js'])
+                'resources/owl/owl.carousel.js', 'resources/js/index.js']) -->
   <script type="module">
 
 

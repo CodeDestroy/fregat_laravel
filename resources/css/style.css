@@ -1551,3 +1551,52 @@
   line-height: 1em;
   color: #000000;
 }
+
+.catalog-table-wrapper {
+  height: calc(100vh - 340px);
+
+  overflow: auto;
+
+  background: white;
+
+}
+
+.catalog-table-wrapper table {
+
+  min-width: 900px;
+
+}
+
+@media (max-width: 1200px) {
+
+  .catalog-table-wrapper {
+
+    height: calc(100vh - 300px);
+
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .catalog-table-wrapper {
+
+    height: calc(100vh - 250px);
+
+  }
+
+}
+
+.accordion-header a {
+  color: #333;
+  font-size: 12px;
+}
+
+.accordion-header a:hover {
+  color: var(--brand-orange);
+}
+
+.accordion-button {
+  background: transparent !important;
+  box-shadow: none !important;
+}

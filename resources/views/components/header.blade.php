@@ -22,10 +22,7 @@
               class="hcall_svg"></a></div>
         <div class="hcall_link"><a href="tel:84732120203" class="hcall_phone">+7 (473) 212-02-03 </a></div>
       </div>
-      <!-- <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
-        <div class="hacc"><a href="#" class="hacc-svg_login"><img src="icons/hacc.svg" class="hacc_svg"></a></div>
-        <div class="hacc_link"><a href="#" class="hacc_login">Вход/регистрация</a></div>
-      </div> -->
+      @guest
       <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
         <div class="hacc">
           <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
@@ -39,6 +36,39 @@
           </a>
         </div>
       </div>
+      @else
+      <!-- <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
+        <div class="hacc"><a href="#" class="hacc-svg_login"><img src="icons/hacc.svg" class="hacc_svg"></a></div>
+        <div class="hacc_link"><a href="#" class="hacc_login">{{ Auth::user()->name }}</a></div>
+      </div> -->
+      <div class="header_acc col-2 col-sm-3 col-lg-3 py-2 nav-item dropdown">
+        <div class="hacc"><a href="#" class="hacc-svg_login"><img src="icons/hacc.svg" class="hacc_svg"></a></div>
+        <a class="hacc nav-link dropdown-toggle p-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: #FFFFFF;">
+          {{ Auth::user()->name }}
+        </a>
+        <div class="hacc_link dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Открыть профиль</a>
+          <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+        </div>
+      </div>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none">
+          @csrf
+      </form>
+      <!-- <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
+        <div class="hacc">
+          <a href="#">
+            <img src="icons/hacc.svg" class="hacc_svg">
+          </a>
+        </div>
+
+        <div class="hacc_link">
+          <a href="#" class="">
+            Профиль
+          </a>
+        </div>
+      </div> -->
+      @endguest
     </div>
   </div>
 

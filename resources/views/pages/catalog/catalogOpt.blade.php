@@ -11,7 +11,7 @@
             --border-color: #dee2e6;
         }
 
-        body { font-family: Arial, sans-serif; font-size: 12px; color: #333; }
+        /* body { font-family: Arial, sans-serif; font-size: 12px; color: #333; } */
 
         /* АККОРДЕОН (Боковое меню) */
         .accordion-sidebar .accordion-item {
@@ -77,7 +77,7 @@
             outline: none;
         }
         .btn-search-main {
-            background-color: var(--brand-orange);
+            background-color: #FF3100;
             color: #fff;
             border: none;
             padding: 0 40px;
@@ -132,6 +132,12 @@
             .search-panel { flex-wrap: wrap; }
             .btn-search-main { width: 100%; margin-top: 4px; }
             .search-prefix { border-right: none; }
+        }
+
+        .table-catalog thead th {
+            position: sticky;
+            top: 0;
+            z-index: 5;
         }
     </style>
     <body>
@@ -243,12 +249,12 @@
             </form>
 
             <!-- Таблица товаров -->
-            <div class="table-responsive border mb-4"> 
+            <div class="table-responsive border mb-4" >
                 <form>
-                    <div class="catalog-table-wrapper border mb-4">
+                    <div class="catalog-table-wrapper" id="catalogScroll" >
                         <table class="table table-sm table-bordered table-catalog mb-0 align-middle">
                             <thead>
-                                <tr>
+                                <tr class="filter-row">
                                     <th style="width:40px"></th>
                                     <th>Код</th>
                                     <th>Артикул</th>
@@ -258,21 +264,33 @@
                                     <th>Склад</th>
                                 </tr>
                                 <tr class="filter-row bg-white">
+                                    <th></th>
                                     <th>
                                         <input name="code" value="{{ request('code') }}">
+                                        <button type="submit"  style="display: none;"></button>
                                     </th>
                                     <th>
                                         <input name="sku" value="{{ request('sku') }}">
+                                        <button type="submit" style="display: none;"></button>
                                     </th>
                                     <th>
                                         <input name="name" value="{{ request('name') }}">
+                                        <button type="submit" style="display: none;"></button>
                                     </th>
                                     <th></th>
                                     <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="catalogBody">
+                                @include('pages.catalog.partials.product_rows')
+                                <tr id="loadingRow" style="display:none">
+                                    <td colspan="7" class="text-center p-3">
+                                        Загрузка...
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <!-- <tbody>
                                 @foreach($products as $product)
                                     @php
                                         $offer = $product->offers->first();
@@ -310,7 +328,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                            </tbody>
+                            </tbody> -->
                         </table>
                     </div>
                     <!-- <button class="btn-search-main">
@@ -460,7 +478,7 @@
 let selectedProduct = null
 let maxQty = 0
 
-$('.open-add-to-cart').click(function(event){
+$(document).on('click', '.open-add-to-cart', function(event){
     event.preventDefault()
     selectedProduct = {
         id: $(this).data('product-id'),
@@ -514,6 +532,58 @@ $('#addToCartBtn').click(function(){
         loadCart()
 
     })
+
+})
+
+</script>
+<script type="module">
+
+let page = 1
+let loading = false
+let hasMore = true
+
+const container = $('#catalogScroll')
+
+container.on('scroll', function(){
+
+    if(loading || !hasMore)
+        return
+
+    const scrollBottom =
+        container.scrollTop() + container.innerHeight()
+
+    const trigger =
+        container[0].scrollHeight - 200
+
+    if(scrollBottom >= trigger){
+
+        loading = true
+
+        $('#loadingRow').show()
+
+        page++
+
+        let params = new URLSearchParams(window.location.search)
+
+        params.set('page', page)
+
+        $.get(window.location.pathname + '?' + params.toString(), function(rows){
+
+            if(rows.trim() === ''){
+                hasMore = false
+                $('#loadingRow').hide()
+                return
+            }
+
+            $('#loadingRow').before(rows)
+
+            loading = false
+
+            $('#loadingRow').hide()
+
+        })
+
+    }
 
 })
 

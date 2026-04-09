@@ -1430,7 +1430,8 @@
   font-family: 'ProximaNova';
   font-style: normal;
   font-weight: 400;
-  font-size: 1em;
+  /* font-size: 1em; */
+  font-size: 13px;
   line-height: 1em;
   color: #292929;
 }
@@ -1589,7 +1590,14 @@
 
 .accordion-header a {
   color: #333;
-  font-size: 12px;
+  font-size: 13px;
+
+  font-family: 'ProximaNova';
+  font-style: normal;
+  font-weight: 600;
+  /* font-size: 1em; */
+  font-size: 13px;
+  line-height: 1em;
 }
 
 .accordion-header a:hover {

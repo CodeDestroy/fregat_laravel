@@ -1,8 +1,20 @@
+<style>
+  @media(max-width: 768px) {
+    .header_indo_small {display: none}
+  }
+  @media(min-width: 769px) {
+
+    .header_info_big {display: none}
+  }
+  .dropnone .dropdown-toggle::after {
+    content: none;
+  }
+</style>
 <header>
-  <div class="header-info">
+  <div class="header-info header_indo_small">
     <div class="container-lg row" style="margin:0 auto; padding: 0;">
       <div class="header_geo col-8 col-sm-5 col-lg-5 py-2">
-        <div class="hgeo"><img src="icons/hgeo.svg" class="hgeo_svg"></div>
+        <div class="hgeo"><img src="/icons/hgeo.svg" class="hgeo_svg"></div>
         <div class="hgeo_text p-2">г.Воронеж</div>
         <div class="hgeo_line"></div>
         <div class="nav-item dropdown">
@@ -18,7 +30,7 @@
         </div>
       </div>
       <div class="header_call col-2 col-sm-4 col-lg-4 py-2">
-        <div class="hcall"><a href="tel:84732120203" class="hcall-svg_phone"><img src="icons/hcall.svg"
+        <div class="hcall"><a href="tel:84732120203" class="hcall-svg_phone"><img src="/icons/hcall.svg"
               class="hcall_svg"></a></div>
         <div class="hcall_link"><a href="tel:84732120203" class="hcall_phone">+7 (473) 212-02-03 </a></div>
       </div>
@@ -26,29 +38,29 @@
       <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
         <div class="hacc">
           <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">
-            <img src="icons/hacc.svg" class="hacc_svg">
+            <img src="/icons/hacc.svg" class="hacc_svg">
           </a>
         </div>
 
         <div class="hacc_link">
-          <a href="#" class="hacc_login" data-bs-toggle="modal" data-bs-target="#loginModal">
+          <a id='login_btn_header' href="#" class="hacc_login" data-bs-toggle="modal" data-bs-target="#loginModal">
             Вход/регистрация
           </a>
         </div>
       </div>
       @else
       <!-- <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
-        <div class="hacc"><a href="#" class="hacc-svg_login"><img src="icons/hacc.svg" class="hacc_svg"></a></div>
+        <div class="hacc"><a href="#" class="hacc-svg_login"><img src="/icons/hacc.svg" class="hacc_svg"></a></div>
         <div class="hacc_link"><a href="#" class="hacc_login">{{ Auth::user()->name }}</a></div>
       </div> -->
       <div class="header_acc col-2 col-sm-3 col-lg-3 py-2 nav-item dropdown">
-        <div class="hacc"><a href="#" class="hacc-svg_login"><img src="icons/hacc.svg" class="hacc_svg"></a></div>
+        <div class="hacc"><a href="#" class="hacc-svg_login"><img src="/icons/hacc.svg" class="hacc_svg"></a></div>
         <a class="hacc nav-link dropdown-toggle p-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false" style="color: #FFFFFF;">
           {{ Auth::user()->name }}
         </a>
         <div class="hacc_link dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Открыть профиль</a>
+          <a class="dropdown-item" href="{{ route('profile')}}">Открыть профиль</a>
           <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
         </div>
       </div>
@@ -58,7 +70,7 @@
       <!-- <div class="header_acc col-2 col-sm-3 col-lg-3 py-2">
         <div class="hacc">
           <a href="#">
-            <img src="icons/hacc.svg" class="hacc_svg">
+            <img src="/icons/hacc.svg" class="hacc_svg">
           </a>
         </div>
 
@@ -72,32 +84,60 @@
     </div>
   </div>
 
+  <div class="header-info header_info_big">
+    <div class="container-lg row" style="margin:0 auto; padding: 0;">
+      <div class="header_geo col-8 col-sm-5 col-lg-5 py-2">
+        <div class="hgeo"><img src="/icons/hgeo.svg" class="hgeo_svg"></div>
+        <div class="hgeo_text p-2">г.Воронеж</div>
+        <div class="hgeo_line"></div>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle p-2" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" style="color: #FFFFFF;">
+            Старых Большевиков
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Старых Большевиков</a>
+            <a class="dropdown-item" href="#">Старых Большевиков</a>
+
+          </div>
+        </div>
+      </div>
+      <div class="header_call col-2 col-sm-4 col-lg-4 py-2">
+        <div class="hcall"><a href="tel:84732120203" class="hcall-svg_phone"><img src="/icons/hcall.svg"
+              class="hcall_svg"></a></div>
+        <div class="hcall_link"><a href="tel:84732120203" class="hcall_phone">+7 (473) 212-02-03 </a></div>
+      </div>
+      
+    </div>
+  </div>
+
 
 
   <div class="header-main">
     <div class="container-xl row" style="margin:0 auto; padding:0;">
       <div class="second_cont-mb">
-        <div class="hlogo col-7 col-sm-3 col-lg-2"><a href="index.html"><img src="icons/hlogo.svg"
-              class="hlogo-svg"></a></div>
+        <div class="hlogo col-6 col-sm-3 col-lg-2"><a href="{{Route('home')}}"><img src="/icons/hlogo.svg"
+              class="hlogo-svg"></a>
+        </div>
         <div class="hsearch col-sm-6 col-lg-4 px-2">
           <div class="input-group rounded">
             <input type="search" class="form-control rounded" placeholder="Поиск по артикулу (номеру детали)"
               aria-label="Search" aria-describedby="search-addon" />
             <span class="input-group-text border-0" id="search-addon">
-              <input type="image" name="image" src="icons/input.svg" class="input-svg" />
+              <input type="image" name="image" src="/icons/input.svg" class="input-svg" />
             </span>
           </div>
         </div>
-        <div class="hitem_list col-5 col-sm-2 col-lg-6 py-1">
+        <div class="hitem_list col-6 col-sm-2 col-lg-6 py-1">
           <div class="hitem">
-            <div class="hitem-pic"><a href="#"><img src="icons/hlike.svg" class="hlike_svg"></a></div>
+            <div class="hitem-pic"><a href="#"><img src="/icons/hlike.svg" class="hlike_svg"></a></div>
             <div class="hitem_cont">
               <div class="hitem_main"><a href="#" class="hitem_link">Избранное</a></div>
               <div class="hitem_item"><a href="#" class="hitem_item-link">5 товаров</a></div>
             </div>
           </div>
           <div class="hitem">
-            <div class="hitem-pic"><a href="#"><img src="icons/hchan.svg" class="hchan_svg"></a></div>
+            <div class="hitem-pic"><a href="#"><img src="/icons/hchan.svg" class="hchan_svg"></a></div>
             <div class="hitem_cont">
               <div class="hitem_main"><a href="#" class="hitem_link">Сравнение</a></div>
               <div class="hitem_item"><a href="#" class="hitem_item-link">5 товаров</a></div>
@@ -105,14 +145,45 @@
           </div>
           <div class="hitem">
             <div class="hitem-pic">
-              <div><a href="#"><img src="icons/hbacket.svg" class="hbacket_svg"></a></div>
+              <div><a href="#"><img src="/icons/hbacket.svg" class="hbacket_svg"></a></div>
               <div class="hbacket_count">2</div>
             </div>
             <div class="hitem_cont">
               <div class="hitem_main"><a href="#" class="hitem_link">Корзина</a></div>
               <div class="hitem_item"><a href="#" class="hitem_item-link">10999 руб.</a></div>
             </div>
+
           </div>
+
+          @guest
+            <div class="hitem header_info_big dropnone dropdown">
+              <div class="hitem-pic dropdown-toggle" id="navbarDropdownNotLogined" role="button" 
+                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #FFFFFF;">
+                <div>
+                  <a href="#"><img src="/icons/login_black.svg" class="hbacket_svg " ></a>
+                </div>
+                <div class="hbacket_count"></div>
+              </div>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownNotLogined">
+                <a class="dropdown-item" href="#" class="hacc_login" data-bs-toggle="modal" data-bs-target="#loginModal">Вход</a>
+                <a class="dropdown-item" href="#">Регистрация</a>
+              </div>
+            </div>
+          @else
+            <div class="hitem header_info_big dropnone dropdown">
+              <div class="hitem-pic dropdown-toggle" id="navbarDropdownNotLogined" role="button" 
+                      data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #FFFFFF;">
+                <div>
+                  <a href="#"><img src="/icons/login_black.svg" class="hbacket_svg " ></a>
+                </div>
+                <div class="hbacket_count"></div>
+              </div>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownNotLogined">
+                <a class="dropdown-item" href="{{route('profile')}}">Профиль</a>
+                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Выйти</a>
+              </div>
+            </div>
+          @endguest
         </div>
 
       </div>
@@ -121,7 +192,7 @@
           <input type="search" class="form-control rounded" placeholder="Поиск по артикулу (номеру детали)"
             aria-label="Search" aria-describedby="search-addon" />
           <span class="input-group-text border-0" id="search-addon">
-            <input type="image" name="image" src="icons/input.svg" class="input-svg" />
+            <input type="image" name="image" src="/icons/input.svg" class="input-svg" />
           </span>
         </div>
       </div>
@@ -659,13 +730,13 @@
 .login-register{
   color:#ff3b00;
   font-size:14px;
-  text-decoration:none;
+  text-decoration-style: dashed;
 }
 
 .login-forgot{
   font-size:13px;
   color:#444;
-  text-decoration:none;
+  text-decoration-style: dashed;
 }
 </style>
 </header>

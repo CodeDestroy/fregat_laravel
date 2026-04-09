@@ -11,12 +11,18 @@ class WholesaleCatalogController extends Controller
 
     public function index(Request $request)
     {
+        
 
         $query = Product::query()
+            ->where('is_active', true)
 
-            ->with(['offers'])
+            ->whereHas('offers', function ($query) {
+                $query->where('quantity', '>', 0);
+            })
 
-            ->where('is_active', true);
+            ->with(['offers' => function ($query) {
+                $query->where('quantity', '>', 0);
+            }]);
 
         // фильтр по категории Переделать!
         if ($request->category) {
@@ -66,10 +72,12 @@ class WholesaleCatalogController extends Controller
         }
 
         $products = $query
-
             ->paginate(50)
-
             ->withQueryString();
+
+        if ($request->ajax()) {
+            return view('pages.catalog.partials.product_rows', compact('products'))->render();
+        }
 
 
         // категории для меню
@@ -84,6 +92,8 @@ class WholesaleCatalogController extends Controller
             ->get();
 
         $carts = [];
+
+        
 
 
         return view('pages.catalog.catalogOpt', compact(

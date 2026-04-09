@@ -10,19 +10,21 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Http\Controllers\AnthropometryController;
+use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', function () {
     return view('/pages/home');
-});
+})->name('home');
 
 
 /* Route::get('/catalog', function () {
     return view('/pages/catalog');
 }); */
 Auth::routes(['verify' => true]);
-Route::get('/catalogOpt', [WholesaleCatalogController::class, 'index']);
+Route::get('/catalogOpt', [WholesaleCatalogController::class, 'index'])->middleware(['auth']);
+Route::get('/profile/info', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile');
+Route::get('/profile/garage', [ProfileController::class, 'garage'])->middleware(['auth'])->name('garage');
 
 
 Route::post('/cart/add', [CartController::class,'add']);

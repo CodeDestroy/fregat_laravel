@@ -17,6 +17,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'secondName',
+        'thirdName',
         'password',
     ];
 
@@ -49,6 +51,8 @@ class User extends Authenticatable
     protected $allowedFilters = [
            'id'         => Where::class,
            'name'       => Like::class,
+           'secondName' => Like::class,
+           'thirdName' => Like::class,
            'email'      => Like::class,
            'updated_at' => WhereDateStartEnd::class,
            'created_at' => WhereDateStartEnd::class,

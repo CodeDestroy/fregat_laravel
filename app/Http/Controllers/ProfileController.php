@@ -25,4 +25,23 @@ class ProfileController extends Controller
 
     }
 
+    public function balance(Request $request)
+    {
+        
+
+        return view('pages.profile.balance');
+
+    }
+
+	public function orders(Request $request)
+    {
+        
+
+        return view('pages.profile.orders');
+
+    }
+    
+
+    
+
 }

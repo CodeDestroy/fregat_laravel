@@ -25,6 +25,8 @@ Auth::routes(['verify' => true]);
 Route::get('/catalogOpt', [WholesaleCatalogController::class, 'index'])->middleware(['auth']);
 Route::get('/profile/info', [ProfileController::class, 'index'])->middleware(['auth'])->name('profile');
 Route::get('/profile/garage', [ProfileController::class, 'garage'])->middleware(['auth'])->name('garage');
+Route::get('/profile/balance', [ProfileController::class, 'balance'])->middleware(['auth'])->name('balance');
+Route::get('/profile/orders', [ProfileController::class, 'orders'])->middleware(['auth'])->name('orders');
 
 
 Route::post('/cart/add', [CartController::class,'add']);
